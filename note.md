@@ -1567,7 +1567,6 @@ void MyFunc()
        MySub();  
    }  
 }  
----
 
 将代码另存为list10_7.c文件，然后在命令提示符中输入以下命令并按下回车键。在这里我们依然指定了用于生成冗余代码的“-Od”选项。  
 bcc32c -c -Od -S list10_7.c  
@@ -1589,6 +1588,7 @@ LBB1_1:                      # 表示循环体入口的标签 ——————
     movl    %eax, -4(%ebp)   # 将eax寄存器的值存入循环变量 —————————（8）  
     jmp     LBB1_1           # 无条件跳转到LBB1_1 —————————————————（9）  
 LBB1_4:                      # 表示循环结束的标签 ——————————————————（10）  
+
 ---
 
 代码中出现了之前没介绍过的操作码：
@@ -1840,9 +1840,9 @@ Python标准的内置函数和对象是可以直接使用的，但机器学习�
 学习数据的量不大，不具备实用价值，只能当玩具来用，因此被称为“玩具数据集”（toy dataset），但是对体验机器学习来说已经足够了。  
 
 使用Python交互模式运行代码确认手写数字学习数据中的字段：  
->>> from sklearn import datasets ————————————————————（1）  
->>> digits = datasets.load_digits() ——————————————————（2）  
->>> dir(digits) ——————————————————————————————————————（3）  
+\>\>\> from sklearn import datasets ————————————————————（1）  
+\>\>\> digits = datasets.load_digits() ——————————————————（2）  
+\>\>\> dir(digits) ——————————————————————————————————————（3）  
 ['DESCR', 'data', 'feature_names', 'frame', 'images', 'target',  
 'target_names']  
 
@@ -1868,15 +1868,15 @@ target_names是答案数据的含义（这里是数字0～9）。
 
 在Python的交互模式中输入以下代码中的程序并运行。这里我们随便选一条数据来显示，比如编号为1234的数据。  
 
->>> from sklearn import datasets —————————————————————————（1）  
->>> digits = datasets.load_digits() ————————————————————————（2）  
->>> digits.data[1234] ————————————————————————————————（3）  
+\>\>\> from sklearn import datasets —————————————————————————（1）  
+\>\>\> digits = datasets.load_digits() ————————————————————————（2）  
+\>\>\> digits.data[1234] ————————————————————————————————（3）  
 array([ 0., 1., 12., 16., 14., 8., 0., 0., 0., 4., 16., 8., 10.,  
         15., 3., 0., 0., 0., 0., 0., 5., 16., 3., 0., 0., 0.,          
         0., 1., 12., 15., 0., 0., 0., 0., 0., 10., 16., 5., 0.,   
         0., 0., 0., 5., 16., 10., 0., 0., 0., 0., 1., 14., 15.,  
         6., 10., 11., 0., 0., 0., 13., 16., 16., 14., 8., 1.])  
->>> digits.images[1234] ———————————————————————————————（4）  
+\>\>\> digits.images[1234] ———————————————————————————————（4）  
 array([[ 0., 1., 12., 16., 14., 8., 0., 0.],  
        [ 0., 4., 16., 8., 10., 15., 3., 0.],         
        [ 0., 0., 0., 0., 5., 16., 3., 0.],         
@@ -1885,7 +1885,7 @@ array([[ 0., 1., 12., 16., 14., 8., 0., 0.],
        [ 0., 0., 5., 16., 10., 0., 0., 0.],         
        [ 0., 1., 14., 15., 6., 10., 11., 0.],         
        [ 0., 0., 13., 16., 16., 14., 8., 1.]])         
->>> digits.target[1234] ———————————————————————————————（5）  
+\>\>\> digits.target[1234] ———————————————————————————————（5）  
 2  
 
 (3) 处的digits.data[1234]的运行结果就是显示64个数值，它们代表一个数字的图像数据（64维特征量）。  
@@ -1896,12 +1896,12 @@ array([[ 0., 1., 12., 16., 14., 8., 0., 0.],
 
 我们可以使用matplotlib库将手写数字的数据以可视化的形式显示出来。  
 
->>> from sklearn import datasets ————————————————————（1）  
->>> digits = datasets.load_digits() ——————————————————（2）  
->>> import matplotlib.pyplot as plt ——————————————————（3）  
->>> plt.imshow(digits.images[1234], cmap="Greys") —————————（4）  
+\>\>\> from sklearn import datasets ————————————————————（1）  
+\>\>\> digits = datasets.load_digits() ——————————————————（2）  
+\>\>\> import matplotlib.pyplot as plt ——————————————————（3）  
+\>\>\> plt.imshow(digits.images[1234], cmap="Greys") —————————（4）  
 <matplotlib.image.AxesImage object at 0x00000290C7707190>  
->>> plt.show() ——————————————————————————————（5）  
+\>\>\> plt.show() ——————————————————————————————（5）  
 
 (3) 处从matplotlib模块中导入pyplot对象，并给它设置了较短的别名plt；
     - 这是一个绘图用途的功能，设置别名是为了减少重复输入，提高效率。
@@ -1925,16 +1925,16 @@ array([[ 0., 1., 12., 16., 14., 8., 0., 0.],
 
 在Python的交互模式中运行代码：通过机器学习识别手写数字
 
->>> from sklearn import datasets ———————————————————————————— （1）  
->>> digits = datasets.load_digits() ——————————————————————————（2）  
->>> from sklearn.model_selection import train_test_split ————— （3）  
->>> d_train, d_test, t_train, t_test = \ ————————————————————— （4）  
+\>\>\> from sklearn import datasets ———————————————————————————— （1）  
+\>\>\> digits = datasets.load_digits() ——————————————————————————（2）  
+\>\>\> from sklearn.model_selection import train_test_split ————— （3）  
+\>\>\> d_train, d_test, t_train, t_test = \ ————————————————————— （4）  
 ... train_test_split(digits.data, digits.target, train_size=2/3)  
->>> from sklearn import svm —————————————————————————————————— （5）  
->>> clf = svm.SVC() —————————————————————————————————————————— （6）  
->>> clf.fit(d_train, t_train) ———————————————————————————————— （7）  
+\>\>\> from sklearn import svm —————————————————————————————————— （5）  
+\>\>\> clf = svm.SVC() —————————————————————————————————————————— （6）  
+\>\>\> clf.fit(d_train, t_train) ———————————————————————————————— （7）  
 SVC()  
->>> clf.score(d_test, t_test) ———————————————————————————————— （8）  
+\>\>\> clf.score(d_test, t_test) ———————————————————————————————— （8）  
 0.9803600654664485  
 
 (3) 处从sklearn.model_selection 模块中导入train_test_split 函数。  
@@ -1964,12 +1964,12 @@ train_test_split(digits.data, digits.target, train_size = 2/3) 表示将手写�
 
 Python交互模式中运行进行交叉验证的代码：
 
->>> from sklearn import datasets —————————————————————————————— （1）  
->>> digits = datasets.load_digits() ——————————————————————————— （2）  
->>> from sklearn import svm ——————————————————————————————————— （3）  
->>> clf = svm.SVC() ——————————————————————————————————————————— （4）  
->>> from sklearn.model_selection import cross_val_score ——————— （5）  
->>> cross_val_score(clf, digits.data, digits.target, cv=3) ———— （6）  
+\>\>\> from sklearn import datasets —————————————————————————————— （1）  
+\>\>\> digits = datasets.load_digits() ——————————————————————————— （2）  
+\>\>\> from sklearn import svm ——————————————————————————————————— （3）  
+\>\>\> clf = svm.SVC() ——————————————————————————————————————————— （4）  
+\>\>\> from sklearn.model_selection import cross_val_score ——————— （5）  
+\>\>\> cross_val_score(clf, digits.data, digits.target, cv=3) ———— （6）  
 array([0.96494157, 0.97996661, 0.96494157])  
 
 (5) 处从sklearn.model_selection 模块导入了cross_val_score 函数。  
@@ -1978,13 +1978,3 @@ cross_val_score函数的参数分别为学习器clf、手写数字图像数据di
 
 程序显示的运行结果为0.964 941 57、0.979 966 61、0.964 941 57，这表示三轮交叉验证得到的识别率分别约为96%、98%、96%。  
 我们可以认为不存在因学习数据类型而出现较大偏差的情况。  
-
-
-
-
-
-
-
-
-
-
